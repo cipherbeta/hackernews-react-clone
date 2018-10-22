@@ -3,10 +3,11 @@ import posed, {PoseGroup} from 'react-pose';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from '../pages/Home';
+import PostPage from '../pages/Post';
 
 let RouteWrapper = posed.div({
-    enter: {opacity: 1, y: 0},
-    exit: {opacity: 0, y: 20}
+    enter: {opacity: 1, delay: 350},
+    exit: {opacity: 0 }
 });
 
 const Routes = () => (
@@ -15,6 +16,7 @@ const Routes = () => (
             <RouteWrapper key={location.pathname}>
                 <Switch location={location}>
                     <Route exact path="/" component={HomePage}/>
+                    <Route path="/:id" component={PostPage}/>
                 </Switch>
             </RouteWrapper>
         </PoseGroup>

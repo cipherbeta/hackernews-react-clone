@@ -29,8 +29,8 @@ body {
     align-items: center;
 
     &--toggle {
-        width: 2.5em;
-        height: 2.5em;
+        width: 2em;
+        height: 2em;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -98,13 +98,28 @@ body {
         h1 {
             font-size: 1rem;
             letter-spacing: -.035em;
+            line-height: .85rem;
+            span {
+                color: $hr_white;
+                opacity: .5;
+                font-weight: 300;
+                font-size: .75rem;
+            }
         }
         font-size: 1rem;
         margin-left: 1em;
     }
 
     &--social {
-
+        a {
+            font-size: 1.25em;
+            color: $hr_gray;
+            padding: .5rem;
+            transition: .25s ease all;
+            &:hover {
+                color: $hr_green;
+            }
+        }
     }
 }
 
@@ -114,39 +129,74 @@ body {
 
 .article {
     width: 100%;
+    z-index: 100;
     padding: .75em 1em;
     box-sizing: border-box;
+    position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     cursor: pointer;
     border-bottom: 1px solid rgb(9, 14, 17);
-    transition: .1s ease all;
+    transition: .25s ease all;
     &:hover {
         background: rgba(0,0,0,.15);
-    }
-
-    &--meta {
-        font-size: .85rem;
-        opacity: .5;
-    }
-
-    &--title {
-        h1 {
-            font-size: 1.25rem;
-            margin: 0;
-            padding: 0;
-            transition: .25s ease all;
-            a {
-                color: $hr_white;
-                text-decoration: none;
-                &:hover {
-                    color: $hr_green;
-                }
+        .article--title {
+            h1 {
+                color: $hr_green;
+                opacity: 1;
             }
             
         }
-        
     }
+
+    &--link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 101;
+    }
+
+    &--score {
+        height: 2em;
+        width: 2em;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1rem;
+        p {
+            font-weight: 700;
+            color: $hr_white;
+            opacity: .5;
+        }
+    }
+
+    &--content {
+        flex-grow: 1;
+
+        .article--meta {
+            font-size: .85rem;
+            opacity: .5;
+        }
+    
+        .article--title {
+            h1 {
+                font-size: 1.25rem;
+                margin: 0;
+                padding: 0;
+                letter-spacing: -.035em;
+                transition: .25s ease all;
+                color: $hr_white;
+                opacity: .95;
+            }
+            
+        }
+    }
+    
 }

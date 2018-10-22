@@ -10,8 +10,8 @@ let ArticleWrapper = posed.div({
 })
 
 let Article = posed.div({
-    enter: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 }
+    enter: { opacity: 1 },
+    exit: { opacity: 1 }
 })
 
 class HomePage extends Component {
@@ -27,13 +27,13 @@ class HomePage extends Component {
 
     getArticles = () => {
         axios
-            .get(`${api}topstories.json`)
+            .get(`${api}/topstories.json`)
             .then(items => {
                 let articles = items.data;
                 let init = articles.slice(0,50);
                 init.forEach(item => {
                     axios
-                        .get(`${post}${item}.json`)
+                        .get(`${post}/${item}.json`)
                         .then(article => {
                             this.setState({ articles: [...this.state.articles, article.data]});
                         });
@@ -45,11 +45,17 @@ class HomePage extends Component {
         let articles = this.state.articles.map((item, i) => {
             return(
                 <Article className="article" key={i}>
-                    <div className="article--title">
-                        <h1><Link to={`/${item.id}`}>{item.title}</Link></h1>
+                    <Link className="article--link" to={`/${item.id}`}/>
+                    <div className="article--score">
+                        <p>{item.score}</p>
                     </div>
-                    <div className="article--meta">
-                        {item.type} by {item.by}
+                    <div className="article--content">
+                        <div className="article--title">
+                            <h1>{item.title}</h1>
+                        </div>
+                        <div className="article--meta">
+                            {item.type} by {item.by}. {item.descendants ? `${item.descendants} comments.` : null} 
+                        </div>
                     </div>
                 </Article>
             )

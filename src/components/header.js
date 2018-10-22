@@ -21,10 +21,12 @@ class Header extends Component {
                     <div className="sandwich"/>
                 </div>
                 <div className="header--title">
-                <h1>HackerNews</h1>
+                <h1>HackerNews<br/><span>A clone by Isaac Doud</span></h1>
                 </div>
                 <div className="header--social">
-                created by ike
+                    <a href="https://gitlab.com/WaifuCannon/hackernews-clone" target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon icon={['fab', 'gitlab']}/>
+                    </a>
                 </div>
             </header>
         )
