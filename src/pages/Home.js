@@ -3,6 +3,8 @@ import axios from 'axios';
 import { api, post } from '../helpers/keys';
 import { Link } from 'react-router-dom';
 import posed, { PoseGroup } from 'react-pose';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import moment from 'moment';
 
 let ArticleWrapper = posed.div({
     enter: { opacity: 1, staggerChildren: 50 },
@@ -44,9 +46,10 @@ class HomePage extends Component {
 
     mapArticles = () => {
         let articles = this.state.articles.map((item, i) => {
+            let time = moment.unix(item.time).fromNow();
             return(
                 <section className="article" key={i}>
-                    <Link className="article--link" to={`/${item.id}`}/>
+                    <Link className="article--link" to={`/posts/${item.id}`}/>
                     <div className="article--score">
                         <p>{item.score}</p>
                     </div>
@@ -55,8 +58,11 @@ class HomePage extends Component {
                             <h1>{item.title}</h1>
                         </div>
                         <div className="article--meta">
-                            {item.type} by {item.by}. {item.descendants ? `${item.descendants} comments.` : null} 
+                            {item.by} posted {time}. {item.descendants ? `${item.descendants} comments.` : null} 
                         </div>
+                    </div>
+                    <div className="article--external">
+                        <FontAwesomeIcon icon="external-link-alt"/>
                     </div>
                 </section>
             )

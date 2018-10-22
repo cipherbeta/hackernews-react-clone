@@ -16,7 +16,7 @@ const Routes = () => (
             <RouteWrapper key={location.pathname}>
                 <Switch location={location}>
                     <Route exact path="/" component={HomePage}/>
-                    <Route path="/:id" component={PostPage}/>
+                    <Route path="/posts/:id" component={PostPage}/>
                 </Switch>
             </RouteWrapper>
         </PoseGroup>

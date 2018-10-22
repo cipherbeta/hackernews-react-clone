@@ -128,6 +128,30 @@ body {
     }
 }
 
+.offcanvas-menu {
+    position: absolute;
+    z-index: 9995;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(9, 14, 17, .95);
+    padding-top: 4em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    a {
+        color: $hr_white;
+        font-size: 1.5rem;
+        text-decoration: none;
+        &.active {
+            color: $hr_green;
+        }
+    }
+}
+
 .content {
     padding-top: 4em;
 }
@@ -224,6 +248,20 @@ body {
             }       
         }
     }
+    &--external {
+        margin-left: 1em;
+        padding: .5em;
+        color: $hr_white;
+        z-index: 105;
+        opacity: .25;
+        transition: .25s ease all;
+        &:hover {
+            opacity: 1;
+            svg {
+                color: $hr_green;   
+            }            
+        }
+    }
 }
 
 .post-meta {
@@ -236,14 +274,31 @@ body {
     border-bottom: 1px solid $hr_dblack;
 
     &--score {
-        height: 3em;
-        width: 3em;
+        height: 2em;
+        width: 2em;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         border-radius: .25em;
         margin-right: 1em;
         flex-shrink: 0;
+        p {
+            margin: -.25em;
+            padding: 0;
+        }
+
+        svg {
+            cursor: pointer;
+            font-size: 1.5em;
+            padding: .5em;
+            margin: -.5em;
+            opacity: .5;
+            &:hover {
+                opacity: 1;
+                color: $hr_green;
+            }
+        }
     }
 
     &--content {
@@ -276,9 +331,11 @@ body {
         flex-shrink: 0;
         a {
             color: $hr_white;
-            padding: .5em;
+            padding: 1em;
             text-decoration: none;
             transition: .25s ease all;
+            border-radius: .5em;
+            font-size: .85rem;
 
             &:visited {
                 color: $hr_green;
@@ -289,6 +346,39 @@ body {
             }
             svg {
                 margin-left: .5em;
+            }
+        }
+    }
+}
+
+.comments {
+    padding: 0 1em;
+
+    .comment {
+        padding: 1em;
+        border-bottom: 1px solid $hr_dblack;
+        line-height: 1.5em;
+        &--meta {
+            color: $hr_green;
+            margin: 0;
+            padding: 0;
+            font-weight: 700;
+            p {
+                margin: 0;
+                padding: 0;
+                span {
+                    color: $hr_white;
+                    opacity: .5;
+                    font-weight: 300;
+                }
+            }
+        }
+
+        &--data {
+            margin: 0;
+            padding: 0;
+            a {
+                color: $hr_green;
             }
         }
     }
