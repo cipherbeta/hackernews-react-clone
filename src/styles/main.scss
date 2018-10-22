@@ -9,6 +9,7 @@ body {
     background: $hr_black;
     color: rgb(245,245,245);
     font-family: $hr_font;
+    min-height: calc(100vh - 14em);
 }
 
 .header {
@@ -224,7 +225,18 @@ body {
         p {
             font-weight: 700;
             color: $hr_white;
-            opacity: .5;
+            opacity: .75;
+        }
+        svg {
+            margin: -1.15em;
+            font-size: 1.25em;
+            opacity: .15;
+            padding: .25em;
+            z-index: 105;
+            &:hover {
+                opacity: 1;
+                color: $hr_green;
+            }
         }
     }
 
@@ -260,6 +272,11 @@ body {
             svg {
                 color: $hr_green;   
             }            
+        }
+        a {
+            &:visited {
+                color: $hr_green;
+            }
         }
     }
 }
@@ -380,6 +397,28 @@ body {
             a {
                 color: $hr_green;
             }
+        }
+    }
+}
+
+.footer {
+    background: $hr_dblack;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+        color: $hr_black;
+    }
+
+    a {
+        color: $hr_black;
+        font-size: 1.5em;
+        transition: .25s ease all;
+        padding: .25em;
+        &:hover {
+            color: $hr_green;
         }
     }
 }

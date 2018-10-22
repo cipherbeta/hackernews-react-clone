@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { post } from '../helpers/keys';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ScrollToTopOnMount from '../helpers/scrollToTop';
 import moment from 'moment';
 
 class PostPage extends Component {

@@ -51,7 +51,9 @@ class HomePage extends Component {
                 <section className="article" key={i}>
                     <Link className="article--link" to={`/posts/${item.id}`}/>
                     <div className="article--score">
+                        <FontAwesomeIcon icon="angle-up"/>
                         <p>{item.score}</p>
+                        <FontAwesomeIcon icon="angle-down"/>
                     </div>
                     <div className="article--content">
                         <div className="article--title">
@@ -62,7 +64,10 @@ class HomePage extends Component {
                         </div>
                     </div>
                     <div className="article--external">
-                        <FontAwesomeIcon icon="external-link-alt"/>
+                        <a href={item.link} target="_blank">
+                            <FontAwesomeIcon icon="external-link-alt"/>
+                        </a>
+                        
                     </div>
                 </section>
             )
@@ -75,7 +80,7 @@ class HomePage extends Component {
             <section className="content">
                     {this.mapArticles()}
                     <div className="loadmore">
-                        <h1>{this.state.loading ? "Loading..." : "Click to load more."}</h1>
+                        <h1>{this.state.loading ? "Loading..." : "Click to load more. (not linked yet)"}</h1>
                     </div>
             </section>
         )
