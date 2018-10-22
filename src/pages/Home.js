@@ -16,7 +16,8 @@ let Article = posed.div({
 
 class HomePage extends Component {
     state = {
-        articles: []
+        articles: [],
+        loading: false,
     }
 
     componentDidMount(){
@@ -44,7 +45,7 @@ class HomePage extends Component {
     mapArticles = () => {
         let articles = this.state.articles.map((item, i) => {
             return(
-                <Article className="article" key={i}>
+                <section className="article" key={i}>
                     <Link className="article--link" to={`/${item.id}`}/>
                     <div className="article--score">
                         <p>{item.score}</p>
@@ -57,19 +58,19 @@ class HomePage extends Component {
                             {item.type} by {item.by}. {item.descendants ? `${item.descendants} comments.` : null} 
                         </div>
                     </div>
-                </Article>
+                </section>
             )
         });
         return articles;
     }
 
     render(){
-        console.log(this.state.articles);
         return(
             <section className="content">
-                <PoseGroup>
                     {this.mapArticles()}
-                </PoseGroup> 
+                    <div className="loadmore">
+                        <h1>{this.state.loading ? "Loading..." : "Click to load more."}</h1>
+                    </div>
             </section>
         )
     }

@@ -4,8 +4,8 @@ import Layout from './layout';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHackerNews, faGoogle, faGitlab } from '@fortawesome/free-brands-svg-icons'
-
-library.add(faHackerNews, faGoogle, faGitlab);
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+library.add(faHackerNews, faGoogle, faGitlab, faExternalLinkAlt);
 
 class App extends Component {
   render() {

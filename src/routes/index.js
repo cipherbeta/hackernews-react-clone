@@ -6,7 +6,7 @@ import HomePage from '../pages/Home';
 import PostPage from '../pages/Post';
 
 let RouteWrapper = posed.div({
-    enter: {opacity: 1, delay: 350},
+    enter: {opacity: 1, delay: 350, beforeChildren: true},
     exit: {opacity: 0 }
 });
 
