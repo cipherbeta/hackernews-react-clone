@@ -69,7 +69,7 @@ class HomePage extends Component {
             <section className="content">
                     {this.mapArticles()}
                     <div className="loadmore" onClick={() => this.getAdditionalArticles()}>
-                        <h1>{this.state.loading ? "Loading..." : "Load more articles"}</h1>
+                        <h1>{this.state.articleNumber >= 500 ? "No more articles available." : "Load more articles"}</h1>
                     </div>
             </section>
         )
