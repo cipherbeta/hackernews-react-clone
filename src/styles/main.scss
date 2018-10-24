@@ -203,6 +203,10 @@ body {
         }
     }
 
+    &:active {
+        background: rgba(0,0,0,.3);
+    }
+
     &--link {
         position: absolute;
         top: 0;
@@ -365,6 +369,26 @@ body {
                 margin-left: .5em;
             }
         }
+    }
+}
+
+.commentbox {
+    background: none;
+    border: 1px solid $hr_dblack;
+    border-radius: .5em;
+    padding: .5em .75em;
+    color: $hr_white;
+    opacity: .5;
+    transition: .25s ease all;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+        color: $hr_green;
+    }
+
+    svg {
+        margin-right: .5em;
     }
 }
 

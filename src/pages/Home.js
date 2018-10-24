@@ -18,8 +18,11 @@ let Article = posed.div({
 
 class HomePage extends Component {
     state = {
+        articleIDs: [],
         articles: [],
         loading: false,
+        loadNumber: 20,
+        articleNumber: 0
     }
 
     componentDidMount(){
@@ -32,8 +35,10 @@ class HomePage extends Component {
         axios
             .get(`${api}/topstories.json`)
             .then(items => {
-                let articles = items.data;
-                let init = articles.slice(0,50);
+                let articleIDs = items.data;
+                this.setState({ articleIDs });
+                let init = articleIDs.slice(0,this.state.loadNumber);
+                this.setState({ articleNumber: this.state.loadNumber })
                 init.forEach(item => {
                     axios
                         .get(`${post}/${item}.json`)
@@ -42,6 +47,21 @@ class HomePage extends Component {
                         });
                 })
             });
+    }
+
+    getAdditionalArticles = () => {
+        let num = this.state.loadNumber;
+        let base = this.state.articleNumber;
+        console.log(`Loading articles from ${base} to ${base + num}`);
+        let init = this.state.articleIDs.slice(base, (base + num));
+        this.setState({loadNumber: (this.state.loadNumber + this.state.loadNumber)})
+        init.forEach(item => {
+            axios
+                .get(`${post}/${item}.json`)
+                .then(article => {
+                    this.setState({ articles: [...this.state.articles, article.data]});
+                });
+        })
     }
 
     mapArticles = () => {
@@ -79,8 +99,8 @@ class HomePage extends Component {
         return(
             <section className="content">
                     {this.mapArticles()}
-                    <div className="loadmore">
-                        <h1>{this.state.loading ? "Loading..." : "Click to load more. (not linked yet)"}</h1>
+                    <div className="loadmore" onClick={() => this.getAdditionalArticles()}>
+                        <h1>{this.state.loading ? "Loading..." : "Load more articles"}</h1>
                     </div>
             </section>
         )

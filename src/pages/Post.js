@@ -56,6 +56,7 @@ class PostPage extends Component {
                     </div>
                     <div className="comment--data" dangerouslySetInnerHTML={comment}>
                     </div>
+                    {item.kids ? <button className="commentbox"><FontAwesomeIcon icon="plus"/> {item.kids.length} comments</button> : null}
                 </div>
             )
         })
@@ -63,7 +64,7 @@ class PostPage extends Component {
     }
 
     render(){
-        let c = this.state.pageContent
+        let c = this.state.pageContent;
         return(
             <section className="content">
                 <div className="post-meta">
