@@ -407,7 +407,7 @@ body {
     cursor: pointer;
 
     &.active {
-        border-bottom: 1px solid $hr_green;
+        border-bottom: 1px solid $hr_dblack;
         opacity: .75;
         svg {
             transform: rotate(315deg);
@@ -468,6 +468,7 @@ body {
             margin: 0 0 .5em 2em;
             border-left: 1px solid $hr_dblack;
             padding: 0 0 .5em 1em;
+            transform-origin: top center;
             .comment {
                 &:last-child {
                     border: none;

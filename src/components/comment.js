@@ -5,6 +5,13 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import moment from 'moment';
+import posed, {PoseGroup} from 'react-pose';
+
+let ChildCommentsWrapper = posed.div({
+    enter: {opacity: 1, scaleY: 1, transition: { type: 'tween', ease: 'easeInOut', duration: 250 }},
+    exit: {opacity: 0, scaleY: 0, transition: { type: 'tween', ease: 'easeInOut', duration: 100 }},
+    
+});
 
 class Comment extends Component {
     state = {
@@ -61,15 +68,15 @@ class Comment extends Component {
                     <button className={"commentbox" + (this.state.childCommentsToggled ? " active" : "")} onClick={()=>this.toggleChildComments()}>
                         <FontAwesomeIcon icon="plus"/> {this.props.kids.length} comments
                     </button> 
+                    <PoseGroup>
                     {
-                        this.state.childCommentsToggled ?
-                            <div className="comment--childbox">
+                        this.state.childCommentsToggled && [
+                            <ChildCommentsWrapper className="comment--childbox" key="childbox">
                                 {this.generateChildComments()}
-                            </div>
-                        :
-                            null
+                            </ChildCommentsWrapper>
+                        ]
                     }
-                    
+                    </PoseGroup>
                 </>
                 : 
                     null
