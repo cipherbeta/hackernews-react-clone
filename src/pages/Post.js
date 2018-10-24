@@ -4,6 +4,8 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollToTopOnMount from '../helpers/scrollToTop';
 import moment from 'moment';
+import DOMPurify from 'dompurify'
+import Comment from '../components/comment';
 
 class PostPage extends Component {
     state = {
@@ -47,17 +49,16 @@ class PostPage extends Component {
     // include the bloat that is moment.js, ech
     generateCommentsList = () => {
         let comments = this.state.comments.map((item, i) => {
-            let comment = {__html: item.text};
-            let time = moment.unix(item.time).fromNow();
+            // Sanitize HTML before dangerously setting innerhtml to help prevent XSS attacks.
+            let sanitizedHTML = DOMPurify.sanitize(item.text);
+            // Set some additional keys to pass to our comment element.
+            item = {
+                key: i,
+                comment: {__html: sanitizedHTML},
+                timecode: moment.unix(item.time).fromNow()
+            }
             return(
-                <div className="comment" key={i}>
-                    <div className="comment--meta">
-                        <p>{item.by}<span> - {time}</span></p>
-                    </div>
-                    <div className="comment--data" dangerouslySetInnerHTML={comment}>
-                    </div>
-                    {item.kids ? <button className="commentbox"><FontAwesomeIcon icon="plus"/> {item.kids.length} comments</button> : null}
-                </div>
+                <Comment {...item}/>
             )
         })
         return comments;
