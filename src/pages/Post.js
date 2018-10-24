@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { post } from '../helpers/keys';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ScrollToTopOnMount from '../helpers/scrollToTop';
 import moment from 'moment';
 import DOMPurify from 'dompurify'
 import Comment from '../components/comment';
@@ -52,14 +52,10 @@ class PostPage extends Component {
             // Sanitize HTML before dangerously setting innerhtml to help prevent XSS attacks.
             let sanitizedHTML = DOMPurify.sanitize(item.text);
             // Set some additional keys to pass to our comment element.
-            item = {
-                key: i,
-                comment: {__html: sanitizedHTML},
-                timecode: moment.unix(item.time).fromNow()
-            }
-            return(
-                <Comment {...item}/>
-            )
+            item.key = i;
+            item.comment = {__html: sanitizedHTML};
+            item.timecode = moment.unix(item.time).fromNow();
+            return( <Comment {...item}/> );
         })
         return comments;
     }
@@ -79,7 +75,7 @@ class PostPage extends Component {
                             <h1>{c.title}</h1>
                         </div>
                         <div className="post-meta--meta">
-                            {c.type} by {c.by}. {c.descendants ? `${c.descendants} comments.` : null} 
+                            {c.type} by <Link to={`/users/${c.by}`}>{c.by}</Link>. {c.descendants ? `${c.descendants} comments.` : null} 
                         </div>
                     </div>
                     <div className="post-meta--link">

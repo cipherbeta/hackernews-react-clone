@@ -1,15 +1,16 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const Comment = (props) => {
     return(
-        <div className="comment" key={props.key}>
+        <div className="comment">
             <div className="comment--meta">
-                <p>{props.by}<span> - {props.timecode}</span></p>
+                <p><Link to={`/users/${props.by}`}>{props.by}</Link><span> - {props.timecode}</span></p>
             </div>
             <div className="comment--data" dangerouslySetInnerHTML={props.comment}>
             </div>
-            {props.kids ? <button className="commentbox"><FontAwesomeIcon icon="plus"/> {props.kids.length} comments</button> : null}
+            {props.kids ? <button className="commentbox active"><FontAwesomeIcon icon="plus"/> {props.kids.length} comments</button> : null}
         </div>
     )
 }

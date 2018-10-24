@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { api, post } from '../helpers/keys';
-import { Link } from 'react-router-dom';
-import posed, { PoseGroup } from 'react-pose';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
-
-let ArticleWrapper = posed.div({
-    enter: { opacity: 1, staggerChildren: 50 },
-    exit: { opacity: 0 }
-})
-
-let Article = posed.div({
-    enter: { opacity: 1 },
-    exit: { opacity: 1 }
-})
+import Article from '../components/article';
 
 class HomePage extends Component {
     state = {
@@ -52,7 +40,6 @@ class HomePage extends Component {
     getAdditionalArticles = () => {
         let num = this.state.loadNumber;
         let base = this.state.articleNumber;
-        console.log(`Loading articles from ${base} to ${base + num}`);
         let init = this.state.articleIDs.slice(base, (base + num));
         this.setState({loadNumber: (this.state.loadNumber + this.state.loadNumber)})
         init.forEach(item => {
@@ -66,31 +53,13 @@ class HomePage extends Component {
 
     mapArticles = () => {
         let articles = this.state.articles.map((item, i) => {
-            let time = moment.unix(item.time).fromNow();
-            return(
-                <section className="article" key={i}>
-                    <Link className="article--link" to={`/posts/${item.id}`}/>
-                    <div className="article--score">
-                        <FontAwesomeIcon icon="angle-up"/>
-                        <p>{item.score}</p>
-                        <FontAwesomeIcon icon="angle-down"/>
-                    </div>
-                    <div className="article--content">
-                        <div className="article--title">
-                            <h1>{item.title}</h1>
-                        </div>
-                        <div className="article--meta">
-                            {item.by} posted {time}. {item.descendants ? `${item.descendants} comments.` : null} 
-                        </div>
-                    </div>
-                    <div className="article--external">
-                        <a href={item.link} target="_blank">
-                            <FontAwesomeIcon icon="external-link-alt"/>
-                        </a>
-                        
-                    </div>
-                </section>
-            )
+            if(item){
+                item.key = i;
+                item.timecode = moment.unix(item.time).fromNow();
+                return( <Article {...item}/> );
+            }
+            // Set some additional keys to add to our article
+            
         });
         return articles;
     }

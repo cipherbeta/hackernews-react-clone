@@ -249,7 +249,17 @@ body {
 
         .article--meta {
             font-size: .85rem;
-            opacity: .5;
+            opacity: .75;
+            z-index: 105;
+            a {
+                z-index: 105;
+                color: $hr_white;
+                text-decoration: none;
+                &:hover {
+                    color: $hr_green;
+                    text-decoration: underline;
+                }
+            }
         }
     
         .article--title {
@@ -338,8 +348,18 @@ body {
         }
 
         .post-meta--meta {
-            opacity: .5;
+            margin-top: .5em;
+            opacity: 1;
             font-size: .85rem;
+            a {
+                font-weight: 700;
+                color: white;
+                text-decoration: none;
+                &:hover {
+                    color: $hr_green;
+                    text-decoration: underline;
+                }
+            }
         }
     }
 
@@ -374,6 +394,7 @@ body {
 
 .commentbox {
     background: none;
+    clear: both;
     border: 1px solid $hr_dblack;
     border-radius: .5em;
     padding: .5em .75em;
@@ -381,6 +402,14 @@ body {
     opacity: .5;
     transition: .25s ease all;
     cursor: pointer;
+
+    &.active {
+        border: 1px solid $hr_green;
+        opacity: .75;
+        svg {
+            transform: rotate(45deg);
+        }
+    }
 
     &:hover {
         opacity: 1;
@@ -394,6 +423,7 @@ body {
 
 .comments {
     padding: 0 1em;
+    
 
     .comment {
         padding: 1em;
@@ -407,6 +437,13 @@ body {
             p {
                 margin: 0;
                 padding: 0;
+                a {
+                    color: $hr_green;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
                 span {
                     color: $hr_white;
                     opacity: .5;

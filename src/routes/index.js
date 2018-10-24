@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from '../pages/Home';
 import PostPage from '../pages/Post';
+import UserPage from '../pages/User';
 
 let RouteWrapper = posed.div({
     enter: {opacity: 1, delay: 350, beforeChildren: true},
@@ -17,6 +18,7 @@ const Routes = () => (
                 <Switch location={location}>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/posts/:id" component={PostPage}/>
+                    <Route path="/users/:id" component={UserPage}/>
                 </Switch>
             </RouteWrapper>
         </PoseGroup>
