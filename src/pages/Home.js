@@ -53,13 +53,9 @@ class HomePage extends Component {
 
     mapArticles = () => {
         let articles = this.state.articles.map((item, i) => {
-            if(item){
-                item.key = i;
-                item.timecode = moment.unix(item.time).fromNow();
-                return( <Article {...item}/> );
-            }
-            // Set some additional keys to add to our article
-            
+            item.key = i;
+            item.timecode = moment.unix(item.time).fromNow();
+            return( <Article {...item}/> ); 
         });
         return articles;
     }

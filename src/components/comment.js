@@ -9,7 +9,7 @@ import posed, {PoseGroup} from 'react-pose';
 
 let ChildCommentsWrapper = posed.div({
     enter: {opacity: 1, scaleY: 1, transition: { type: 'tween', ease: 'easeInOut', duration: 250 }},
-    exit: {opacity: 0, scaleY: 0, transition: { type: 'tween', ease: 'easeInOut', duration: 100 }},
+    exit: {opacity: 0, scaleY: 0, transition: { type: 'tween', ease: 'easeInOut', duration: 150 }},
     
 });
 
@@ -30,7 +30,6 @@ class Comment extends Component {
             axios
                 .get(`${post}/${item}.json`)
                 .then(comment => {
-                    console.log(comment);
                     this.setState({childComments: [...this.state.childComments, comment.data]});
                 })
 

@@ -45,6 +45,10 @@ class Header extends Component {
                         <NavLink to="/" onClick={this.handleMenuToggle}>
                             Top Stories
                         </NavLink>
+                        <hr/>
+                        <a href="https://github.com/HackerNews/API" target="_blank" rel="noopener noreferrer">
+                            <FontAwesomeIcon icon={['fab', 'github']}/> HackerNews API
+                        </a>
                     </OffCanvasMenu>
                 ]}
             </PoseGroup>

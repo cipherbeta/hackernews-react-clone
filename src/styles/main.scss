@@ -12,6 +12,10 @@ body {
     min-height: calc(100vh - 14em);
 }
 
+*:focus {
+    outline: none;
+}
+
 .header {
     position: fixed;
     z-index: 9999;
@@ -143,10 +147,20 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    hr {
+        width: 75%;
+        max-width: 200px;
+        margin: 1em;
+        border: 1px solid rgba(255,255,255,.1);
+    }
     a {
         color: $hr_white;
         font-size: 1.5rem;
         text-decoration: none;
+        svg {
+            font-size: .85em;
+            margin-right: .25em;
+        }
         &.active {
             color: $hr_green;
         }
@@ -465,9 +479,9 @@ body {
         }
 
         &--childbox {
-            margin: 0 0 .5em 2em;
+            margin: 0em 0 .5em 0.5em;
             border-left: 1px solid $hr_dblack;
-            padding: 0 0 .5em 1em;
+            padding: 0 0 .5em 0;
             transform-origin: top center;
             .comment {
                 &:last-child {
