@@ -20,7 +20,7 @@ const Article = (props) => {
                 </div>
             </div>
             <div className="article--external">
-                <a href={props.link} target="_blank" rel="noopener noreferrer">
+                <a href={props.url} target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon="external-link-alt"/>
                 </a>
                 

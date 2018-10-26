@@ -228,7 +228,7 @@ body {
         right: 0;
         bottom: 0;
         background: transparent;
-        z-index: 101;
+        z-index: 105;
     }
 
     &--score {
@@ -293,7 +293,7 @@ body {
         padding: .5em;
         color: $hr_white;
         z-index: 105;
-        opacity: .25;
+        opacity: .5;
         transition: .25s ease all;
         &:hover {
             opacity: 1;
@@ -302,6 +302,7 @@ body {
             }            
         }
         a {
+            color: $hr_white;
             &:visited {
                 color: $hr_green;
             }
