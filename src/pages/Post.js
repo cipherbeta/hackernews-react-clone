@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
-import DOMPurify from 'dompurify'
+import DOMPurify from 'dompurify';
 import Comment from '../components/comment';
 
 class PostPage extends Component {

@@ -15,14 +15,21 @@ let ChildCommentsWrapper = posed.div({
 
 class Comment extends Component {
     state = {
+        // Helper to stop setState on unmounted components.
+        isMounted: false,
         childCommentsToggled: false,
         childComments: []
     }
 
-    componentDidMount(){
+    componentDidMount() {
+        this.setState({isMounted: true});
         if(this.props.kids && this.props.kids.length > 0){
             this.getChildComments();
         }
+    }
+
+    componentWillUnmount() {
+        this.setState({isMounted: false});
     }
 
     getChildComments = () => {
@@ -30,7 +37,10 @@ class Comment extends Component {
             axios
                 .get(`${post}/${item}.json`)
                 .then(comment => {
-                    this.setState({childComments: [...this.state.childComments, comment.data]});
+                    if(this.state.isMounted){
+                        this.setState({childComments: [...this.state.childComments, comment.data]});
+                    }
+                    
                 })
 
         })

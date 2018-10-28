@@ -7,8 +7,8 @@ import PostPage from '../pages/Post';
 import UserPage from '../pages/User';
 
 let RouteWrapper = posed.div({
-    enter: {opacity: 1, delay: 350, beforeChildren: true},
-    exit: {opacity: 0 }
+    enter: {opacity: 1, y: 0, delay: 350, beforeChildren: true},
+    exit: {opacity: 0, y: 40 }
 });
 
 const Routes = () => (
